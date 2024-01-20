@@ -3,12 +3,11 @@ interface IKey  {
 }
 
 class Key implements IKey {
-    constructor(private signature: string = Math.random().toString(36).substring(2, 10)) {}
+    private signature: string = Math.random().toString(36).substring(2, 10)
 
     getSignature(): string {
         return this.signature;
     }
-
 }
 
 interface IPerson {
@@ -24,14 +23,10 @@ class Person implements IPerson {
 }
 
 abstract class House {
-    protected door: boolean;
+    protected door: boolean = false;
     protected tenants: IPerson[] = [];
-    protected key: IKey;
 
-    constructor(key: IKey){
-        this.door = false;
-        this.key = key;
-    }
+    constructor(protected key: IKey){}
 
     comeIn(person: IPerson): void{
         if(this.door){
